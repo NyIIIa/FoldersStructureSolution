@@ -1,0 +1,31 @@
+[
+               {
+                  "Name":"Root",
+                  "ParentFolderName":""
+               },
+               {
+                  "Name":"Images",
+                  "ParentFolderName":"Root"
+               },
+               {
+                  "Name":"Videos",
+                  "ParentFolderName":"Root"
+               },
+               {
+                  "Name":"Family",
+                  "ParentFolderName":"Images"
+               },
+               {
+                  "Name":"Friends",
+                  "ParentFolderName":"Images"
+               },
+               {
+                  "Name":"Italy",
+                  "ParentFolderName":"Videos"
+               },
+               {
+                  "Name":"Ukraine",
+                  "ParentFolderName":"Videos"
+               }
+            ]
+            
