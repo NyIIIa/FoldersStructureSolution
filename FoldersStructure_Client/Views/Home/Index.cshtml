@@ -1,0 +1,106 @@
+﻿@model FoldersStructure_Client.Domain.HomeModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Folders structure application</h2>
+<hr style="height: 5px; background-color: black">
+
+
+<h5 style="margin-bottom: 15px">
+    <b>Uploaded structures into database:</b>
+</h5>
+@{
+    <ul>
+        @{
+            foreach (var structure in Model.UploadedStructures ?? new string[]{})
+            {
+                <div style="display: flex">
+                    <li style="margin-right: 10px">@structure</li>
+                    <a style="margin-right: 10px;" asp-controller="CustomStructure" asp-action="Index" asp-route-source="@structure" 
+                       style="font-size: 15px">view structure</a> 
+                    
+                    <a asp-action="DownloadStructure" asp-route-source="@structure" 
+                                            style="font-size: 15px">download structure</a> 
+                </div>
+            }
+        }
+    </ul>
+
+}
+
+
+<h5 style="margin-bottom: 15px">
+    <b>Uploaded structures into file:</b>
+</h5>
+@{
+    <ul>
+        @{
+            foreach (var file in Model.UploadedFiles ?? new FileInfo[] {})
+            {
+                <div style="display: flex;">
+                    <li style="margin-right: 10px">@file.Name</li>
+                    <a style="font-size: 15px" asp-action="ImportFileToDatabase" 
+                            asp-route-fileName="@file.Name">import file to database</a>
+                </div>
+            }
+        }
+    </ul>
+
+}
+<hr style="height: 5px; background-color: black">
+
+<form asp-action="ImportFile" enctype="multipart/form-data">
+    <div style="display: flex">
+        <div style="display: flex; flex-direction: column; width: 500px">
+            <h5 style="margin-bottom: 15px">
+                <b>Uploading file of folders structure to server:</b>
+            </h5>
+            <label>File name:</label>
+            <input style="width: 200px; margin-bottom: 10px" required="required" type="text" name="FileName">
+            <input style="width: 300px; margin-bottom: 10px" type="file" name="File"/>
+            <input style="width: 200px" type="submit" value="Upload">
+        </div>
+        <div>
+            <h5 style="color: red">PAY ATTANTION!</h5>
+            <p>The strcture folders in a file should be represented by JSON data in a ".txt: file</p>
+            <label style="margin-bottom: 5px">For example: </label>
+            <br>
+            <textarea cols="50" rows="10">
+            [
+               {
+                  "Name":"Root",
+                  "ParentFolderName":""
+               },
+               {
+                  "Name":"Images",
+                  "ParentFolderName":"Root"
+               },
+               {
+                  "Name":"Videos",
+                  "ParentFolderName":"Root"
+               },
+               {
+                  "Name":"Family",
+                  "ParentFolderName":"Images"
+               },
+               {
+                  "Name":"Friends",
+                  "ParentFolderName":"Images"
+               },
+               {
+                  "Name":"Italy",
+                  "ParentFolderName":"Videos"
+               },
+               {
+                  "Name":"Ukraine",
+                  "ParentFolderName":"Videos"
+               }
+            ]
+            </textarea>
+
+        </div>
+    </div>
+</form>

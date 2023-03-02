@@ -1,0 +1,22 @@
+﻿@model FoldersStructure_Client.Domain.FolderNode;
+
+@{
+    var titlePage = Model.Name + " " + "folder" + " " + "page";
+    ViewBag.Title = titlePage;
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">"Folder" - @Model.Name</h1>
+    <br>
+    <ul>
+        @{
+            foreach (var subfolder in @Model.Subfolders)
+            {
+                <li><a href="/BaseStructure/FindFolderNode?folderName=@subfolder.Name">@subfolder.Name</a></li>
+            }
+        }
+    </ul>
+
+    <p>This is subsfolder</p>
+</div>

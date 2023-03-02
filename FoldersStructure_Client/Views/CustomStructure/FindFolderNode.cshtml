@@ -1,0 +1,23 @@
+﻿@model FoldersStructure_Client.Domain.FolderNode;
+
+@{
+    var titlePage = Model.Name + " " + "folder" + " " + "page";
+    ViewData["Title"] = titlePage;
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">"Folder" - @Model.Name</h1>
+    <br>
+    <ul>
+        @{
+            foreach (var subfolder in @Model.Subfolders)
+            {
+                <li><a asp-action="FindFolderNode" asp-route-folderName="@subfolder.Name" 
+                       asp-route-source="@subfolder.Source">@subfolder.Name</a></li>
+            }
+        }
+    </ul>
+
+    <p>This is the subfolder</p>
+</div>
